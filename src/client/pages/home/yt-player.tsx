@@ -5,7 +5,7 @@ type Props = {
 export function YTPlayer(props: Props) {
 	return (
 		<iframe
-			className="border-none rounded-xl"
+			className="border-none rounded-lg"
 			width="1280"
 			height="720"
 			src={`https://www.youtube.com/embed/${props.videoId}`}
