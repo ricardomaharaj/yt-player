@@ -4,6 +4,7 @@ export const icon = {
 	chart: "icon-[material-symbols--bar-chart-rounded]",
 	comment: "icon-[material-symbols--comment-outline]",
 	description: "icon-[material-symbols--description-outline]",
+	paste: "icon-[material-symbols--content-paste-go-rounded]",
 	playlist: "icon-[material-symbols--playlist-play]",
 	search: "icon-[material-symbols--search]",
 	thumbsUp: "icon-[material-symbols--thumb-up-outline-rounded]",

@@ -45,7 +45,7 @@ export function HomePage() {
 			<div className="row gap-2 w-full">
 				<div className="col gap-2 w-2/3 min-w-[1280px]">
 					<YTPlayer videoId={videoId} />
-					<InfoPane videoId={videoId} />
+					{videoId && <InfoPane videoId={videoId} />}
 				</div>
 
 				<div className="col gap-2 w-1/3">

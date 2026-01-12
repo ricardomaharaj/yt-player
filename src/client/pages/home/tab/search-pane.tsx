@@ -1,4 +1,5 @@
 import {
+	IconButton,
 	Paper,
 	TextField,
 	ToggleButton,
@@ -9,6 +10,7 @@ import { useRef, useState } from "react"
 import { useQuery } from "urql"
 import { SEARCH_QUERY } from "~/client/gql/query/search"
 import { searchQueryAtom } from "~/client/lib/state/search-query"
+import { videoIdAtom } from "~/client/lib/state/video-id"
 import { ChannelCard } from "~/client/lib/ui/card/channel-card"
 import { VideoCard } from "~/client/lib/ui/card/video-card"
 import { icon } from "~/client/lib/ui/icon"
@@ -32,6 +34,7 @@ const searchFilterOrder: SearchFilter[] = [
 ]
 
 export function SearchPane() {
+	const [videoId, setVideoId] = useAtom(videoIdAtom)
 	const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom)
 	const [searchTab, setSearchTab] = useState<SearchFilter>(SearchFilter.Video)
 	const searchRef = useRef<HTMLInputElement>(null)
@@ -57,6 +60,12 @@ export function SearchPane() {
 		if (val) setSearchQuery(val)
 	}
 
+	async function handlePasteLink() {
+		const text = await window.navigator.clipboard.readText()
+		const key = new URL(text).searchParams.get("v")
+		if (key) setVideoId(key)
+	}
+
 	return (
 		<>
 			<div className="col gap-2">
@@ -80,6 +89,12 @@ export function SearchPane() {
 							}
 						}}
 					/>
+
+					<div className="row items-center">
+						<IconButton title="Paste Youtube Link" onClick={handlePasteLink}>
+							<i className={`${icon.paste}`} />
+						</IconButton>
+					</div>
 
 					<ToggleButtonGroup
 						exclusive
